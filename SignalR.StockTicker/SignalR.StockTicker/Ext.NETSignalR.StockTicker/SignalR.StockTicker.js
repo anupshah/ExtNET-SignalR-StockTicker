@@ -56,7 +56,7 @@ Ext.onReady(function () {
 				row, el;
 			
 			if (rowIndexOfStockItem === -1) {
-				store.loadData([stock], true); // need to do update existing row or add new instead of load
+				store.loadData([stock], true);
 				highlightRow = store.getCount();
 			} else {
 				store.getAt(rowIndexOfStockItem).set(stock);
