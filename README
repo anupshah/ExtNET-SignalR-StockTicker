@@ -1,5 +1,4 @@
-A fork of the SignalR StockTicker Demo using an Ext.NET GridPanel
-=================================================================
+# A fork of the SignalR StockTicker Demo using an Ext.NET GridPanel
 
 This is a fork of the SignalR StockTicker demo but shows how an Ext.NET 2.x GridPanel can be used.
 
