@@ -127,6 +127,7 @@
     <Content Include="Ext.NET.Default.aspx" />
     <Content Include="Ext.NETSignalR.StockTicker\Default.aspx" />
     <Content Include="Ext.NETSignalR.StockTicker\SignalR.StockTicker.js" />
+    <Content Include="Ext.NETSignalR.StockTicker\style.css" />
     <Content Include="Scripts\jquery-1.8.3.js" />
     <Content Include="Scripts\jquery-1.8.3.min.js" />
     <Content Include="Scripts\jquery.color-2.1.0.js" />
