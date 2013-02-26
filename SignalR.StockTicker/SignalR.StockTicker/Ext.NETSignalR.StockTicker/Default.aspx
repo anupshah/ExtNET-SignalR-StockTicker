@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" %>
+<%@ Register TagPrefix="ext" Namespace="Microsoft.AspNet.SignalR.StockTicker.Ext.NETSignalR.StockTicker" Assembly="Microsoft.AspNet.SignalR.StockTicker" %>
 <!DOCTYPE html>
 <html>
 	<head runat="server">
@@ -7,9 +8,6 @@
 		<link href="style.css" rel="stylesheet" />
 
 		<ext:ResourcePlaceHolder runat="server" />
-		<script>
-			Ext.ns("ExtNETTicker");
-		</script>
 
 	    <script src="../bundles/jquery"></script>
 		<script src="../Scripts/jquery.signalR-1.0.0.js"></script>
@@ -21,23 +19,23 @@
 		
 		<ext:Window runat="server" Layout="Fit" Icon="Table" Title="SignalR Stock Ticker with Ext.NET" Closable="false" Width="550" Height="300" Border="false">
 			<Items>
-				<ext:GridPanel ID="GridPanel1" runat="server">
+				<ext:SignalRGridPanel ID="GridPanel1" runat="server">
 					<TopBar>
 						<ext:Toolbar runat="server">
 							<Items>
 								<ext:Button ItemID="btnOpen" Text="Open Market" Icon="PlayGreen">
 									<Listeners>
-										<Click Handler="ExtNETTicker.open();" />
+										<Click Handler="this.up('signalrgridpanel').open();" />
 									</Listeners>
 								</ext:Button>
 								<ext:Button ItemID="btnClose" Text="Close Market" Enabled="false" Icon="StopRed">
 									<Listeners>
-										<Click Handler="ExtNETTicker.close();" />
+										<Click Handler="this.up('signalrgridpanel').close();" />
 									</Listeners>
 								</ext:Button>
 								<ext:Button ItemID="btnReset" Text="Reset">
 									<Listeners>
-										<Click Handler="ExtNETTicker.reset();" />
+										<Click Handler="this.up('signalrgridpanel').reset();" />
 									</Listeners>
 								</ext:Button>
 							</Items>
@@ -50,7 +48,7 @@
 									<Fields>
 										<ext:ModelField Name="Symbol" />
 										<ext:ModelField Name="Price" Type="Float">
-											<Convert Handler="return ExtNETTicker.convertPrice.apply(this, arguments)" />
+											<Convert Handler="return #{GridPanel1}.convertPrice.apply(this, arguments);" />
 										</ext:ModelField>
 										<ext:ModelField Name="DayOpen" Type="Float" />
 										<ext:ModelField Name="DayHigh" Type="Float" />
@@ -59,7 +57,7 @@
 										<ext:ModelField Name="LastChange" Type="Float" />
 										<ext:ModelField Name="Change" Type="Float" />
 										<ext:ModelField Name="PercentChange" Type="Float">
-											<Convert Handler="return ExtNETTicker.convertPercentChange.apply(this, arguments)" />
+											<Convert Handler="return #{GridPanel1}.convertPercentChange.apply(this, arguments);" />
 										</ext:ModelField>
 									</Fields>
 								</ext:Model>
@@ -74,7 +72,7 @@
 							<ext:Column Width="50" DataIndex="DayHigh" Text="High" Align="Right" />
 							<ext:Column Width="50" DataIndex="DayLow" Text="Low" Align="Right" />
 							<ext:Column Width="50" DataIndex="Direction" Text="Direction" Align="Center">
-								<Renderer Handler="return ExtNETTicker.renderDirection.apply(this, arguments);" />
+								<Renderer Handler="return #{GridPanel1}.renderDirection.apply(#{GridPanel1}, arguments);" />
 							</ext:Column>
 							<ext:Column Width="80" DataIndex="LastChange" Text="Last Change" Align="Right" />
 							<ext:Column Width="50" DataIndex="Change" Text="Change" Align="Right" />
@@ -84,7 +82,7 @@
 					<View>
 						<ext:GridView MarkDirty="false" />
 					</View>
-				</ext:GridPanel>
+				</ext:SignalRGridPanel>
 			</Items>
 		</ext:Window>
 	</body>
