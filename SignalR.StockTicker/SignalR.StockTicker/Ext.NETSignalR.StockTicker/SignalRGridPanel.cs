@@ -1,4 +1,5 @@
-﻿using Ext.Net;
+﻿using System;
+using Ext.Net;
 
 namespace Microsoft.AspNet.SignalR.StockTicker.Ext.NETSignalR.StockTicker
 {
@@ -12,6 +13,104 @@ namespace Microsoft.AspNet.SignalR.StockTicker.Ext.NETSignalR.StockTicker
 		public override string InstanceOf
 		{
 			get { return "ExtNetSignalRDemo.SignalRGridPanel"; }
+		}
+
+		protected override void OnInit(EventArgs e)
+		{
+			BuildTopBar();
+			BuildStore();
+			BuildColumns();
+			BuildView();
+
+			base.OnInit(e);
+		}
+
+		private void BuildTopBar()
+		{
+			TopBar.Add(new Toolbar
+			{
+				Items =
+				{
+					BuildButton("Open", "Open Market", Icon.PlayGreen),
+					BuildButton("Close", "Close Market", Icon.StopRed, false),
+					BuildButton("Reset", "Reset", Icon.PlayGreen)
+				}
+			});
+		}
+
+		private Button BuildButton(string action, string text, Icon icon, bool enabled = true)
+		{
+			return new Button
+			{
+				ItemID    = "btn" + action,
+				Enabled   = enabled,
+				Text      = text,
+				Icon      = icon,
+				Listeners =
+				{
+					Click =
+					{
+						Handler = "this.up('signalrgridpanel')." + action.ToLower() + "();"
+					}
+				}
+			};
+		}
+
+		private void BuildStore()
+		{
+			Store.Add(new Store
+			{
+				Model =
+				{
+					new Model
+					{
+						IDProperty = "Symbol",
+						Fields =
+						{
+							new ModelField("Symbol"),
+							new ModelField("Price", ModelFieldType.Float)
+							{
+								Convert = { Handler="return #{" + ID + "}.convertPrice.apply(this, arguments);" }
+							},
+							new ModelField("DayOpen", ModelFieldType.Float),
+							new ModelField("DayHigh", ModelFieldType.Float),
+							new ModelField("DayLow", ModelFieldType.Float),
+							new ModelField("Direction"),
+							new ModelField("LastChange", ModelFieldType.Float),
+							new ModelField("Change", ModelFieldType.Float),
+							new ModelField("PercentChange", ModelFieldType.Float)
+							{
+								Convert = { Handler="return #{" + ID + "}.convertPercentChange.apply(this, arguments);" }
+							}
+						}
+					}
+				}
+			});
+		}
+
+		private void BuildColumns()
+		{
+			ColumnModel.Columns.AddRange(new []
+			{
+				new Column { Width=80, DataIndex="Symbol", Text="Symbol" },
+				new Column { Width=50, DataIndex="Price", Text="Price", Align=Alignment.Right },
+				new Column { Width=50, DataIndex="DayOpen", Text="DayOpen", Align=Alignment.Right },
+				new Column { Width=50, DataIndex="DayHigh", Text="DayHigh", Align=Alignment.Right },
+				new Column { Width=50, DataIndex="DayLow", Text="DayLow", Align=Alignment.Right },
+				new Column
+				{
+					Width=50, DataIndex="Symbol", Text="Direction", Align=Alignment.Right,
+					Renderer = { Handler = "return #{" + ID + "}.renderDirection.apply(#{" + ID + "}, arguments);" }
+				},
+				new Column { Width=80, DataIndex="LastChange", Text="LastChange", Align=Alignment.Right },
+				new Column { Width=50, DataIndex="Change", Text="Change", Align=Alignment.Right },
+				new Column { Width=50, DataIndex="PercentChange", Text="PercentChange", Align=Alignment.Right }
+			});
+		}
+
+		private void BuildView()
+		{
+			View.Add(new GridView { MarkDirty = false });
 		}
 	}
 }
