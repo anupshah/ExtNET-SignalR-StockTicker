@@ -76,7 +76,10 @@ Ext.define('ExtNetSignalRDemo.SignalRGridPanel', {
 				row = gridInstance.getView().getNode(highlightRow);
 				el = Ext.get(row);
 				bgColor = stock.Change >= 0 ? gridInstance.upBgColor : gridInstance.downBgColor;
-				Ext.get(el).highlight(bgColor, { attr: 'backgroundColor', duration: 750 });
+
+				if (el != null) {
+					el.highlight(bgColor, { attr: 'backgroundColor', duration: 750 });
+				}
 			},
 
 			marketOpened: function () {
