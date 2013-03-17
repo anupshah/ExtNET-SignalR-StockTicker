@@ -94,17 +94,17 @@ namespace Microsoft.AspNet.SignalR.StockTicker.Ext.NETSignalR.StockTicker
 			{
 				new Column { Width=80, DataIndex="Symbol", Text="Symbol" },
 				new Column { Width=50, DataIndex="Price", Text="Price", Align=Alignment.Right },
-				new Column { Width=50, DataIndex="DayOpen", Text="DayOpen", Align=Alignment.Right },
-				new Column { Width=50, DataIndex="DayHigh", Text="DayHigh", Align=Alignment.Right },
-				new Column { Width=50, DataIndex="DayLow", Text="DayLow", Align=Alignment.Right },
+				new Column { Width=50, DataIndex="DayOpen", Text="Open", Align=Alignment.Right },
+				new Column { Width=50, DataIndex="DayHigh", Text="High", Align=Alignment.Right },
+				new Column { Width=50, DataIndex="DayLow", Text="Low", Align=Alignment.Right },
 				new Column
 				{
 					Width=50, DataIndex="Symbol", Text="Direction", Align=Alignment.Right,
 					Renderer = { Handler = "return #{" + ID + "}.renderDirection.apply(#{" + ID + "}, arguments);" }
 				},
-				new Column { Width=80, DataIndex="LastChange", Text="LastChange", Align=Alignment.Right },
+				new Column { Width=80, DataIndex="LastChange", Text="Change", Align=Alignment.Right },
 				new Column { Width=50, DataIndex="Change", Text="Change", Align=Alignment.Right },
-				new Column { Width=50, DataIndex="PercentChange", Text="PercentChange", Align=Alignment.Right }
+				new Column { Width=50, DataIndex="PercentChange", Text="%", Align=Alignment.Right }
 			});
 		}
 
