@@ -50,8 +50,8 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Ext.Net, Version=3.2.1.19974, Culture=neutral, PublicKeyToken=2e12ce3d0176cd87, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ext.NET.3.2.1\lib\net45\Ext.Net.dll</HintPath>
+    <Reference Include="Ext.Net, Version=3.2.1.20018, Culture=neutral, PublicKeyToken=2e12ce3d0176cd87, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ext.NET.3.2.1\lib\net46\Ext.Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ext.Net.Utilities, Version=2.5.0.0, Culture=neutral, PublicKeyToken=2c34ac34702a3c23, processorArchitecture=MSIL">
@@ -84,8 +84,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -112,7 +112,7 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Transformer.NET">
+    <Reference Include="Transformer.NET, Version=2.1.1.22883, Culture=neutral, PublicKeyToken=e274d618e7c603a7, processorArchitecture=MSIL">
       <HintPath>..\packages\Transformer.NET.2.1.1\lib\net35\Transformer.NET.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -133,6 +133,11 @@
     <Content Include="App_Readme\Ext.NET\README.txt" />
     <Content Include="App_Readme\Ext.NET\Sample.Web.config" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
+    <Content Include="App_Readme\Ext.NET.Utilities\BREAKING_CHANGES.txt" />
+    <Content Include="App_Readme\Ext.NET.Utilities\LICENSE.txt" />
+    <Content Include="App_Readme\Ext.NET.Utilities\README.txt" />
+    <Content Include="App_Readme\Transformer.NET\LICENSE.txt" />
+    <Content Include="App_Readme\Transformer.NET\README.txt" />
     <Content Include="Ext.NET.Default.aspx" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
@@ -140,11 +145,6 @@
     <None Include="SignalR.StockTicker\SignalR.StockTicker.js" />
     <None Include="SignalR.StockTicker\StockTicker.html" />
     <None Include="SignalR.StockTicker\StockTicker.css" />
-    <Content Include="App_Readme\Ext.NET.Utilities\BREAKING_CHANGES.txt" />
-    <Content Include="App_Readme\Ext.NET.Utilities\LICENSE.txt" />
-    <Content Include="App_Readme\Ext.NET.Utilities\README.txt" />
-    <Content Include="App_Readme\Transformer.NET\LICENSE.txt" />
-    <Content Include="App_Readme\Transformer.NET\README.txt" />
     <Content Include="Ext.NETSignalR.StockTicker\Default.aspx" />
     <Content Include="Ext.NETSignalR.StockTicker\SignalR.StockTicker.js" />
     <Content Include="Ext.NETSignalR.StockTicker\style.css" />
