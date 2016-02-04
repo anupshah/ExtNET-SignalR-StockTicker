@@ -9,7 +9,7 @@ namespace Microsoft.AspNet.SignalR.StockTicker
     public class StockTicker
     {
         // Singleton instance
-        private readonly static Lazy<StockTicker> _instance = new Lazy<StockTicker>(
+        private static readonly Lazy<StockTicker> _instance = new Lazy<StockTicker>(
             () => new StockTicker(GlobalHost.ConnectionManager.GetHubContext<StockTickerHub>().Clients));
 
         private readonly object _marketStateLock = new object();
@@ -27,7 +27,7 @@ namespace Microsoft.AspNet.SignalR.StockTicker
         private volatile bool _updatingStockPrices;
         private volatile MarketState _marketState;
 
-        private StockTicker(IHubConnectionContext clients)
+        private StockTicker(IHubConnectionContext<dynamic> clients)
         {
             Clients = clients;
             LoadDefaultStocks();
@@ -41,7 +41,7 @@ namespace Microsoft.AspNet.SignalR.StockTicker
             }
         }
 
-        private IHubConnectionContext Clients
+        private IHubConnectionContext<dynamic> Clients
         {
             get;
             set;

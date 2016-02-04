@@ -1,1183 +1,367 @@
 ﻿**************************************************************************
-*                      2.1.1 BREAKING CHANGES                            *
+*                      3.2.1 BREAKING CHANGES                            *
 **************************************************************************
 
-Release Date     : 2012-11-28
-Current Version  : 2.1.1
-Previous Version : 2.1.0
+Release Date     : 2015-08-24
+Current Version  : 3.2.1
+Previous Release : 3.2.0
 
-    NONE
-	
-	
-**************************************************************************
-*                      2.1.0 BREAKING CHANGES                            *
-**************************************************************************
+If you find any new breaking changes, please report in the Ext.NET Community
+forums: http://forums.ext.net.
 
-Release Date     : 2012-11-21
-Current Version  : 2.1.0
-Previous Version : 2.0.0
+The [EXTJS] or [EXTNET] tag indicates origin framework of the Breaking Change.
 
-    NONE
-
-
-**************************************************************************
-*                      2.0.x BREAKING CHANGES                            *
+1. [EXTNET] ComboBox's, ReminderCombo's, CalendarCombo's ForceSelection type
+   has been changed to bool? from bool. Please see the GitHub issue #783 why.
+   
+   
+   **************************************************************************
+*                      3.2.0 BREAKING CHANGES                            *
 **************************************************************************
 
-Release Date     : 2012-03-08
-Current Version  : 2.0.0
+Release Date     : 2015-07-15
+Current Version  : 3.2.0
+Previous Release : 3.1.0
 
+If you find any new breaking changes, please report in the Ext.NET Community
+forums: http://forums.ext.net.
 
-1.   - XControl has been renamed to BaseControl
-	 - StateManagedItem has been renamed to BaseItem
-	 - StateManagedItemCollection has been renamed to BaseItemCollection
+The [EXTJS] or [EXTNET] tag indicates origin framework of the Breaking Change.
 
+1. [EXTNET] ComboBox's, ReminderCombo's, CalendarCombo's ForceSelection type
+   has been changed to bool? from bool. Please see the GitHub issue #783 why.
 
-2.	 The IDMode="Explicit" functionality has been changed. 
 
-	It still causes the control ClientID to be rendered if a developer explicitly set up the control ID.
+**************************************************************************
+*                      3.1.0 BREAKING CHANGES                            *
+**************************************************************************
 
-	But ClientID doesn't match ID anymore, it is constructed in a common way.
+Release Date     : 2015-02-17
+Current Version  : 3.1.0
+Previous Release : 3.0.0
 
-	Use IDMode="Static" instead.
+If you find any new breaking changes, please report in the Ext.NET Community
+forums: http://forums.ext.net.
 
-3.	 Window .CloseAction "Close" has been renamed to "Destroy".
+The [EXTJS] or [EXTNET] tag indicates origin framework of the Breaking Change.
 
-	 Example
+For [EXTJS] related changes, Ext JS 5 Upgrade Guide and Docs should be reviewed:
+http://docs-origin.sencha.com/extjs/5.1/whats_new/5.1.0/extjs_upgrade_guide.html
+http://docs.sencha.com/extjs/5.1/5.1.0-apidocs/#!/api
 
-	 // Old
-	 <ext:Window runat="server" CloseAction="Close" />
+1.  [EXTJS] The AbstractDataView's LoadMask property bool type has been
+    changed to bool?. The TreeView's LoadMask property override has been
+    removed.
 
-	 // New
-	 <ext:Window runat="server" CloseAction="Destroy" />
+2.  [EXTNET] The RowExpander's "rowexpander" PType (the plugin alias in 
+    Javascript)  has been renamed to "netrowexpander". The "Ext.ux.RowExpander" 
+    InstaceOf (the name of JavaScript class) has been renamed to 
+    "Ext.net.RowExpander". This breaking change is only relevant if you use 
+    a RowExpander in JavaScript directly. If you use the server RowExpander 
+    class, you don't need to change anything.
 
-4.	 Panel .Padding property has been renamed to .BodyPadding. 
+3.  [EXTJS] The DesktopStartMenu inherits the Menu class now, not Panel.
 
-	 Example
-	 
-	 // Old
-	 <ext:Window runat="server" Padding="5" />
-	 
-	 // New
-	 <ext:Window runat="server" BodyPadding="5" />
+4.  [EXTJS] The EnableKeyNav property of CellSelectionModel, RowSelectionModel,
+    DataView classes has been removed. Keyboard navigation is a function of the 
+    view's navigation model, and is enabled for accessibilty purposes. There is
+    a related discussion in the forums with a possible solution.
+    http://forums.ext.net/showthread.php?51901
 
-	 The .Padding property is still available, although now renders as Padding around 
-	 the Component, instead of padding in the Body of the Component.
+5.  [EXTJS] The MenuBase's EnableKeyNav property has been removed. Intra-menu 
+    key navigation is always enabled.
 
-	 All previous instance of .Padding should be renamed to .BodyPadding. 
+6.  [EXTNET] The BoxLayoutConfig's Animate and AnimateDuration properties 
+    have been removed. These properties are not supported even in Ext.NET 
+    v2.x and have been somehow left by mistake. So, they didn't produce any 
+    effect anyways and should removed earlier.
 
-5.	 The server Panel Border property type has been changed from bool to bool?.
-	 The server Panel BodyBorder property type has been changed from bool to int?.
+7.  [EXTNET] The type of a GridView's StripeRows property has been changed
+    to bool? from bool. It should be always rendered to client, because Crisp
+    themes change the default value to true.
 
-6.	 AccordionLayout .Animate property has been renamed to .AnimatePosition. 
+8.  [EXTNET] The Column's "grid" client side reference has been renamed to
+    "gridRef".
 
-	 Example
+9.  [EXTJS] Selecting a GridPanel's row programmatically doesn't focus that
+    row and doesn't scroll to that row automatically. Previously, it did. 
+    Here is a related discussion in the Ext.NET Community forums.
+    http://forums.ext.net/showthread.php?53111
 
-	 // Old
-	 <ext:AccordionLayout runat="server" Animate="false">
+10. [EXTNET] The GridView's StripeRows property has been moved to the 
+    TableView class.
 
-	 // New
-	 <ext:AccordionLayout runat="server" AnimatePostion="false">
+11. [EXTNET] The Toolbar's OverFlowChange event has been renamed to
+    OverflowChange (lowercase "f").
 
-7.	 AfterRecordUpdatedEventArgs .NewValues has been renamed to .Values.
-	 
-	 Example
 
-	 // Old
-	 protected void Store1_RecordUpdated(object sender, AfterRecordUpdatedEventArgs e)
-     {
-         var company = new
-         {
-             Name = e.NewValues["company"],
-             Price = e.NewValues["price"],
-             LastChange = e.NewValues["lastChange"]
-         };
-     }
+**************************************************************************
+*                      3.0.0 BREAKING CHANGES                            *
+**************************************************************************
 
-	 //New
-	 protected void Store1_RecordUpdated(object sender, AfterRecordUpdatedEventArgs e)
-     {
-         var company = new
-         {
-             Name = e.Values["company"],
-             Price = e.Values["price"],
-             LastChange = e.Values["lastChange"]
-         };
-     }
+Release Date     : 2014-12-17
+Current Version  : 3.0.0
+Previous Release : 3.0.0-beta
 
-8.	 GridPanel .StripeRows has been moved to GridView.
+NONE
 
-	 Example
+If you find any new breaking changes, please report in the Ext.NET Community
+forums: http://forums.ext.net.
 
-	 //Old
-	 <ext:GridPanel runat="server" StripeRows="true">
 
-	 //New
-	 <ext:GridPanel runat="server">
-         <View>
-             <ext:GridView runat="server" StripeRows="true" />
-         </View>
-     </ext:GridPanel>
+**************************************************************************
+*                      3.0.0-beta BREAKING CHANGES                       *
+**************************************************************************
 
-9.	 GridPanel .TrackMouseOver has been moved to GridView and renamed to .TrackOver
+Release Date     : 2014-11-04
+Current Version  : 3.0.0-beta
 
-	 Example
+If you find any new breaking changes, please report in the Ext.NET Community
+forums: http://forums.ext.net.
 
-	 //Old
-	 <ext:GridPanel runat="server" TrackMouseOver="true">
+The [EXTJS] or [EXTNET] tag indicates origin framework of the Breaking Change.
 
-	 //New
-	 <ext:GridPanel runat="server">
-         <View>
-             <ext:GridView runat="server" TrackOver="true" />
-         </View>
-     </ext:GridPanel>
+For [EXTJS] related changes, the Ext JS 5 Upgrade Guide should be reviewed:
+http://docs.sencha.com/extjs/5.0/whats_new/5.0/extjs_upgrade_guide.html
 
-	 Note
 
-	 In according to ExtJS docs the default value is false. Now it's not. So, it needs to check it in the future.
-	 Now is August'17.
+1.  [EXTJS] Support for Internet Explorer 6 and 7 has been dropped.
 
-10.	 GridPanel .AutoExpandColumn has been removed. To achieve the same effect use .Flex of Column.
-	
-	 Example
+2.  [EXTJS] Now there is no possibility to change a Theme 
+    without a full page reload. JavaScript files for each theme 
+    must be reloaded. Those JavaScript files override properties that 
+    cannot be changed on the fly.
 
-	 //Old
-	 <ext:GridPanel runat="server" AutoExpandColumn="Company">
-		 <ColumnModel runat="server">
-			 <Columns>
-				 <ext:Column ColumnID="Company" ... />
-			 </Columns>
-		 </ColumnModel>
-	 </ext:GridPanel>
+3.  [EXTJS] The AbsractComponent's .Margins property has been removed. 
+    Please use .Margin or .MarginSpec property.
+    The .DefaultMargins property of BoxLayoutConfig, HBoxLayoutConfig, 
+    VBoxLayoutConfig, FitLayoutConfig has been removed. 
+    Please use a .Defaults inner property of the container 
+    itself or the .Margin/.MarginSpec properties of its children.
 
-	 //New
-	 <ext:GridPanel runat="server">
-		 <ColumnModel runat="server">
-			 <Columns>
-				 <ext:Column Flex="1" ... />
-			 </Columns>
-		 </ColumnModel>
-	 </ext:GridPanel>
+4.  [EXTJS] The ScriptMode's "Development" option has been removed. 
+    Please use "Debug" for development and "Release" for production.
 
-11.  RowSelectionModel .SingleSelect has been removed.
+5.  [EXTJS] The TriggerField class has been removed. 
+    Please use a regular TextField and its .Triggers property.
 
-	 Now use the public property .Mode which is defined in AbstractSelectionModel. The possible values are Single (default), Simple and Multi.
-	 
-	 RowSelectionModel and CheckboxSelectionModel inherit from AbstractSelectionModel.
+6.  [EXTJS] The AbstractComponent's SetDocked() method 
+    has been renamed to SetDock().
 
-	 The default value of .SingleSelect is false: so, the equivalent is Mode="Multi" which is not default and should be set up explicitly.
+7.  [EXTJS] The AbstractComponent's DoComponentLayout() method 
+    has been removed. Please use UpdateLayout() instead.
 
-	 Example 1
+8.  [EXTJS] The Model's .IDGen property has been renamed to .Identifier.
 
-	 //Old
-	 <ext:RowSelectionModel runat="server">
+9.  [EXTJS] The ModelProxy's Destroy() method has been renamed to Erase().
 
-	 //New
-	 <ext:RowSelectionModel runat="server" Mode="Multi">
+10. [EXTJS] The Model's .Validations property has been renamed to .Validators.
 
-	 Example 2
+11. [EXTJS] The ModelProxy's SetDirty() method has been removed. 
+    Now the dirty state should not be changed by developer.
 
-	 //Old
-	 <ext:RowSelectionModel runat="server" SinlgeSelect="true">
+12. [EXTJS] The NodeProxy's Destroy() method has been renamed to Erase().
 
-	 //New
-	 <ext:RowSelectionModel runat="server" Mode="Single">
+13. [EXTJS] The TreeStore's SetRootNode() method has been renamed to SetRoot().
 
-	 Example 3
+14. [EXTJS] The AbstractReader's (i.e. in subclasses like JsonReader as well),
+    JsonWriter's and MetaConfig's .Root property 
+    has been renamed to .RootProperty.
 
-	 //Old
-	 <ext:CheckboxSelectionModel runat="server" SinlgeSelect="false">
+15. [EXTJS] The AbstractReader's .IDProperty has been removed.
+    It affects any subclasses like JsonReader. 
+    Please use a Model's .IDProperty.
 
-	 //New
-	 <ext:CheckboxSelectionModel runat="server" Mode="Multi">
+16. [EXTJS] The AbstractWriter's .WriteAllFields default true value 
+    has been changed to false. 
+    It affects all inheritors - JsonWriter and XmlWriter.
 
-12.  Column .ColumnID has been renamed to .ID
+17. [EXTJS] The Layer's .Shim property has been removed. 
+    This setting should not be needed anymore.
 
-	 Now Column is a component and registered in ComponentMgr (http://www.sencha.com/forum/showthread.php?133562)
+18. [EXTJS] The Labelable's .ClearCls property has been removed. 
+    There is no the clearing div anymore. 
+    It means that you can just remove this configuration property.
 
-	 Example
+19. [EXTJS] The TextArea's .Cols and .Rows properties have been removed. 
+    Please use CSS or set manually those HTML attributes.
 
-	 //Old
-	 <ext:Column ColumnID="company">
+20. [EXTJS] The ColumnBase's .Wrap property has been renamed to .CellWrap.
 
-	 //New
-	 <ext:Column ID="company" runat="server">
+21. [EXTJS] The BufferedRenderer's .VariableRowHeight property 
+    has been removed. Now it is configured for Columns.
 
-13.  Column .Header has been replaced with .Text
-	 The JavaScript config option .header can still work, but it's deprecated.
+22. [EXTJS] The TreeStore's Listeners and DirectEvents:
+    Append, BeforeAppend, BeforeCollapse, BeforeExpand, BeforeInsert, 
+    BeforeMove, BeforeRemove, Collapse, Expand, Insert, Remove, Sort 
+    have been prefixed with "Node": 
+    NodeAppend, NodeBeforeAppend, NodeBeforeCollapse, etc.
 
-	 Example 1
+23. [EXTJS] Now the ColumnBase class inherits the AbstractContainer class, 
+    instead of ComponentBase. 
+    The .HeaderItems property has been removed. Please use .Items.
 
-	 //Old
-	 <ext:Column Header="Company">
-
-	 //New
-	 <ext:Column Text="Company">
-
-	 Example 2
-
-	 //Old
-	 Column c = new Column()
-	 {
-		 Header = "Company"
-	 };
-
-	 //New
-	 Column c = new Column()
-	 {
-		 Text = "Company"
-	 };
-
-14.1 RecordField has been renamed to ModelField and must be defined in Model.
-
-	 Reader .Fields has been removed.
-
-     Example
-
-	 //Old
-	 <ext:Store runat="server">
-         <Model>
-             <ext:JsonReader>
-                 <Fields>
-                     <ext:RecordField Name="company" />
-                 </Fields>
-             </ext:JsonReader>
-         </Model>
-     </ext:Store>
-
-	 //New
-	 <ext:Store runat="server">
-         <Model>
-             <ext:Model runat="server">
-                 <Fields>
-                     <ext:ModelField Name="company" />
-                 </Fields>
-             </ext:Model>
-         </Model>
-     </ext:Store>
-
-14.2 Use Validations instead .AllowBlank property.
-
-15.  The server HttpProxy class has been renamed to AjaxProxy.
-
-	 Example
-
-	 //Old
-	 <ext:HttpProxy Url="Some.url" />
-
-	 //New
-	 <ext:AjaxProxy Url="Some.url" />
-
-	 And there is no .Method
-	 Use ActionMethods
-
-	 Example
-	 
-	 //Old
-	 <ext:HttpProxy Url="some.url" Method="POST">
-
-	 //New
-	 <ext:AjaxProxy Url="some.url">
-		<ActionMethods READ="POST" />
-	 </ext:AjaxProxy>
-
-
-16.  If Store .Proxy is specified, then Reader should be specified for that Proxy.
-
-	 Example
-
-	 //Old
-	 <ext:Store runat="server">
-         <Proxy>
-             <ext:HttpProxy Url="Some.url" />
-         </Proxy>
-         <Reader>
-             <ext:JsonReader Root="Data" TotalProperty="TotalRecords">
-                 <Fields>
-                     <ext:RecordField Name="Common" />                   
-                 </Fields>
-             </ext:JsonReader>
-         </Reader>
-     </ext:Store>
-
-	 //New
-	 <ext:Store runat="server">
-         <Proxy>
-             <ext:AjaxProxy Url="Some.url">
-                 <Reader>
-                     <ext:JsonReader Root="Data" TotalProperty="TotalRecords" />
-                 </Reader>
-             </ext:AjaxProxy>
-         </Proxy>
-         <Model>
-             <ext:Model runat="server">
-                 <Fields>
-                     <ext:ModelField Name="Company" />
-                 </Fields>
-             </ext:Model>
-         </Model>
-     </ext:Store>
-
-17.  PagingToolbar .PageSize has been removed. 
-     Store .PageSize should be used instead.
-
-	 Example
-
-	 //Old
-	 <ext:PagingToolbar runat="server" PageSize="10">
-
-	 //New
-	 <ext:Store runat="server" PageSize="10">
-
-18.  ColumnModel .SetHidden() has been removed.
-
-	 Use Column .Hidden
-
-	 Example
-
-	 //Old
-	 this.GridPanel1.ColumnModel.SetHidden(2, true);
-
-	 //New
-	 this.GridPanel1.ColumnModel.Columns[2].Hidden = true;
-
-19.  ColumnModel .SetColumnWidth() has been removed.
-
-	 Use Column .SetWidth()
-
-	 Example
-
-	 //Old
-	 this.GridPanel1.ColumnModel.SetColumnWidth(1, 100);
-
-	 //New
-	 this.GridPanel1.ColumnModel.Columns[1].SetWidth(100);
-
-20.  ColumnModel SetColumnHeader method has been removed.
-
-	 Use Column Text property.
-
-	 Example
-
-	 //Old
-	 this.GridPanel1.ColumnModel.SetColumnHeader(0, "New label");
-
-	 //New
-	 this.GridPanel1.ColumnModel.Columns[0].Text = "New label";
-
-21.  ColumnModel SetRenderer method has been removed.
-
-	 Use Column Renderer property.
-
-	 Example
-
-	 //Old
-	 Renderer r = new Renderer();
-	 r.Fn = "change";
-	 this.GridPanel1.ColumnModel.SetRenderer(2, r);
-
-	 //New
-	 Renderer r = new Renderer();
-	 r.Fn = "change";        
-	 this.GridPanel1.ColumnModel.Columns[2].Renderer = r;
-
-22.  JavaScript: MixedCollection .itemAt() has been removed. 
-	 Use .getAt().
-
-	 Example
-
-	 //Old
-	 Panel1.items.itemAt(0);
-
-	 //New
-	 Panel1.items.getAt(0);
-
-23.  GroupingView has been removed and replaced with Grouping feauture.
-
-	Its GroupTextTpl property has been removed. To set up it please use the GroupHeaderTplString or GroupHeaderTpl (XTemplate type) properties.
-
-	 Example
-
-	 //Old
-	 <ext:GridPanel runat="server">
-		 <View>
-			 <ext:GroupingView  
-				 HideGroupedColumn="true"
-				 runat="server" 
-				 GroupTextTpl='{text} ({[values.rs.length]} {[values.rs.length > 1 ? "Items" : "Item"]})'>
-			 </ext:GroupingView>
-		 </View>            
-	 </ext:GridPanel>
-
-	 //New
-	 <ext:GridPanel runat="server">
-	     <View>
-             <ext:GridView runat="server" />
-         </View>
-         <Features>
-             <ext:Grouping 
-                 runat="server" 
-                 HideGroupedHeader="true" 
-                 GroupHeaderTplString='{text} ({[values.rows.length]} {[values.rows.length > 1 ? "Items" : "Item"]})' />
-         </Features>
-	 </ext:GridPanel>
-	 
-24.  GridView .ForceFit has been moved to GridPanel.
-	 
-25.  GridView .EnableRowBody has been removed and replaced with RowBody feature.
-
-	 Example
-	 
-	 //Old
-	 <ext:GridPanel runat="server">
-         <View>
-             <ext:GridView 
-                 runat="server"
-                 EnableRowBody="true">
-                 <GetRowClass Handler="var d = record.data;
-                                         rowParams.body = 'some html';" />
-             </ext:GridView>
-         </View>            
-     </ext:GridPanel> 
-
-	 //New
-	 <ext:GridPanel runat="server">
-	     <View>
-		     <ext:GridView runat="server" />
-		  </View>
-          <Features>
-			 <ext:RowBody runat="server">
-                 <GetAdditionalData 
-                     Handler="var d = data; 
-                              orig.rowBody = 'some html';" />
-             </ext:RowBody>
-         </Features>
-	 </ext:GridPanel>
-
-26.  GridPanel Command and GroupCommand listeners has been moved to Column listeners.
-
-27.  Store .SortInfo has been removed.
-	 Use Store .Sorters
-
-	 Example
-
-	 //Old
-	 <SortInfo Field="Common" Direction="ASC" />
-
-	 //New
-	 <Sorters>
-         <ext:DataSorter Property="Common" Direction="ASC" />
-     </Sorters> 
-
-28.  Store .SerializationMode has been removed.
-	 Use ModelField .IsComplex 
-	 or 
-	 Store .Data instead of .DataSource equals SerializationMode="Complex".
-
-29.  To get Column .Editor working set up CellEditing or RowEditing plugin for GridPanel.
-
-	 GridPanel "editing" events are moved to CellEditing/RowEditing.
-
-	 Use the editing plugin client startEdit method instead of the GridPanel startEditing one.
-	 
-	 Example
-
-	 <ext:GridPanel runat="server">
-         <Plugins>
-             <ext:CellEditing runat="server" />
-         </Plugins>
-     </ext:GridPanel>
-
-30.  Signature of ModelField .Convert has been changed.
-	 The first argument is a record, not an array of values.
-
-31.  Store .BaseParams has been renamed to .Parameters
-     Parameter has been renamed to StoreParameter
-
-32.  RowSelectionModel RowSelect and RowDeselect Listener and DirectEvent has been renamed to
-     Select and Deselect
-
-33.  RowSelectionModel JavaScript .getSelected() has been removed.
-	 Use .getSelection().
-
-34.  "Layout" type controls has been removed.
-
-	 Use the Layout and LayoutConfig properties of a container.
-
-35.  GridFilters plugin became a feature and should be defined in GridPanel .Features, not .Plugins.
-
-36.  ScriptTagProxy has been renamed to JsonPProxy
-
-37.  BufferView has been removed. Use Store .Buffered property.
-
-38.  GridView .ScrollOffset has been moved to GridPanel.
-
-39.  Panel .Header has been renamed to .PreventHeader.
-     
-	 Example
-
-	 //Old
-	 <ext:Panel runat="server" Header="false">
-
-	 //New
-	 <ext:Panel runat="server" PreventHeader="true">
-
-40.  Now ExtJS doesn't override/extend standard JavaScript classes.
-
-	 The createDelegate function has been renamed to bind.
-
-	 Example 1
-
-	 //Old
-	 String.format(string, value1, value2);
-
-	 //New
-	 Ext.String.format(string, value1, value2);
-
-	 Example 2
-
-	 //Old
-	 var f = function () { };
-	 f.defer(10);
-
-	 //New
-	 Ext.Function.defer(f, 10);
-
-	 Example 3
-
-	 //Old
-	 var f = function () {
-		alert(this);
-	 };
-	 f.createDelegate('Hello!')();
-
-	 //New	
-	 Ext.Function.bind(f, 'Hello!')();
-
-41.  Store .OnRefreshData has been renamed to .OnReadData
- 
-42.  LockingGridView has been removed.
-	 Use Column .Locked property.
-
-43.  GridView .MarkDirty has been removed.
-
-44.  The RowEditor plugin has been removed.
-
-	 Use the RowEditing plugin.
-
-	 Use its Edit event instead of the RowEditor AfterEdit one.
-
-	 Use its SaveBtnText property instead of the RowEditor SaveText.
-
-45.  XMLReader .IDPath has been removed.
-     Use .IDProperty
-
-46. ComboBox .Template has been removed. Use ComboBox ListConfig.Tpl and ListConfig.ItemTpl.
-
-    Example
-
-	//Old
-    <ext:ComboBox runat=server>
-        <Template runat="server">
-            <Html>
-                
-            </Html>
-        </Template>
-    </ext:ComboBox>
-
-	//New
-    <ext:ComboBox runat="server">
-        <ListConfig>
-            <Tpl runat="server">
-                <Html>
-                    
-                </Html>
-            </Tpl>
-            <ItemTpl runat="server">
-                <Html>
-                    
-                </Html>
-            </ItemTpl>
-        </ListConfig>
-    </ext:ComboBox>
-
-47. ComboBox .LoadingText has been removed. Use ComboBox ListConfig.LoadingText.
-
-	Example
-
-	//Old
-	<ext:ComboBox runat=server LoadingText="Searching..." />
-
-	//New
-	<ext:ComboBox runat="server">
-        <ListConfig LoadingText="Searching..." />
-    </ext:ComboBox>
-
-48. ComboBox .ItemSelector has been removed. Use ComboBox ListConfig.ItemSelector.
-
-	Example
-
-	//Old
-	<ext:ComboBox runat=server ItemSelector="div.my-item" />
-
-	//New
-	<ext:ComboBox runat="server">
-        <ListConfig ItemSelector="div.my-item" />
-    </ext:ComboBox>
-
-49. ComboBox Select listener. An array of records is passed to a listener, not a single record.
-
-50. The ComboBox server SelectedIndex and SelectedItem properties have been removed.
-
-	Use the SelectedItems property.
-
-	Example
-
-	//Old
-	<ext:ComboBox runat="server" SelectedIndex="1">
-
-	//New
-	<ext:ComboBox runat="server">
-		<SelectedItems>
-			<ext:ListItem Index="0" />
-		</SelectedItems>   
-	</ext:ComboBox>
-
-51. Store server .UpdateRecordField() has been removed.
-
-	Example
-
-	//Old
-	Store1.UpdateRecordField(0, "company", (object)"New Company");
-
-	//New
-	Store1.GetAt(0).Set("company", (object)"New Company");
-
-52. ComboBox client .triggers collection has been removed. Use .getTrigger(index).
-
-	Example
-	
-	//Old
-	ComboBox1.triggers[0]
-
-	//New
-	ComboBox.getTrigger(0)
-
-53. CompositeField hasb been removed and replaced with FieldContainer.
-    Note that default Layout of FieldContainer is "autocontainer", not "hbox".
-
-	Example
-
-	//Old
-	<ext:CompositeField runat="server">
-        <Items>
-            <ext:TextField runat="server" Flex="1" />
-            <ext:TextField runat="server" Flex="1" />
-        </Items>
-    </ext:CompositeField>
-
-	//New
-	<ext:FieldContainer runat="server" Layout="HBoxLayout">
-        <Items>
-            <ext:TextField runat="server" Flex="1" />
-            <ext:TextField runat="server" Flex="1" />
-        </Items>
-    </ext:FieldContainer>
-
-54. Menu ItemClick has been renamed to Click.
-
-55. DropDownField .ComponentAlign has been renamed to PickerAlign.
-
-56. DropDownField new property .MatchFieldWidth has true value by default.
-	So, .Width of a Component is ignored.
-	To avoid it set up MatchFieldWidth="false".
-
-57. The TreeNode class has been renamed to the Node one. The Nodes property has been renamed to the Children one.
-	
-	A Node JavaScript instance has the client "data" property instead of the "attributes" one.
-
-	To get a custom attribute (CustomAttributes) appeared in the "data" property, you should add a respective ModelField.
-
-	A ModelField can be added to the TreePanel's Fields collection or to the Fields collection of the TreeStore's Model.
-
-	The ModelField's Name should match the custom attribute's Name.
-
-58. TreePanel DefaultSelectionModel and MultiSelectionModel has been renamed to TreeSelectionModel.
-    Use .Mode to set up selection mode.
-
-59. FieldUploadField FileSelected event has been removed. Use Change.
-
-60. Form fields .DataIndex has been renamed to .Name.
-
-61. PagingToolbar .PageIndex has been removed. Use Store .LoadPage(index) or set up a respective "start" parameter.
-
-62. MultiSelect .Legend has been removed. Wrap MultiSelect in FieldSet of use ListTitle.
-
-63. Use NumberField instead of SpinnerField.
-
-64. Container .LabelAlign, .LabelPad, .LabelSeparator, .LabelStyle, .LabelWidth has been removed.
-	Use the same properties of container items.
-	
-	Note that you can set these properties for all items using Container Defaults or FormPanel FieldDefaults.
-
-65. ColorPalette has been renamed to ColorPicker.
-
-66. ComboBox Mode has need renamed to QueryMode.
-
-67. BottomTitle has been removed. Use Panel HeaderPosition.
-
-68. DataView OverClass has been renamed to OverCls.
-	To set up over class for items, use OverItemCls.
-
-69. MenuTextItem has been removed. You can use, for example, Label or DisplayField.
-
-70. Element .AddClass(), .RemoveClass(), .ToogleClass() has been renamed to, respectively, 
-	.AddCls(), .RemoveCls(), .ToogleCls(). Their client side pairs as well.
-
-71. The Panel's AutoLoad property has been removed. Use the Loader one. It has the ComponentLoader type.
-
-	The LoadConfig class hass been removed. Use the ComponentLoader one.
-	
-	71.1. Use DisableCaching instead of NoCache.
-	71.2. Use Mode="Html" instead of Mode="Merge". It's by default.
-	71.3. Use LoadMask.ShowMask instead of ShowMask.
-	71.4. Use LoadMask.Msg instead of MaskMsg.
-	71.5. Use Loader BeforeLoad and Load events instead of Panel BeforeUpdate and Update.
-	71.6. Use AutoLoad instead of ManuallyTriggered. A replacement of ManuallyTriggered="true" is AutoLoad="false".
-
-72. TabPanel ResizeTabs has been renamed to Resizable.
-
-73. CenterLayout has been removed. Please us a combination of HBoxLayout and VBoxLayout.
-
-74. ToolbarReorderer plugin has been renamed to BoxReorderer.
-
-75. The CommandColumn ButtonAlign property has been removed.
-
-	Use the Pack one. The available options are Start (default) | Center | End.
-
-76. TreeNode has been renamed to Node. Node has no client side getUI method.
-	To get a node's HTML element, use the view's getNode method.
-
-	Example
-
-	//New
-	tree.getView().getNode(node)
-
-77. TreeNode has been renamed to Node. Its Draggable property has be renamed to AllowDrag.
-
-78. TreeNode has been renamed to Node. Leaf nodes requires Leaf="true" to be set up.
-
-79. Tool Qtip has been renamed to Tooltip.
-
-80. TreePanel client side initChildren method has been removed. Use the setRootNode method.
-
-81. The TreePanel's drag@drop related properties have been removed: EnableDD, EnableDrag, EnableDrop, AllowLeafDrop, DDAppendOnly, DDGroup, DDScroll, ContainerScroll.
-
-	Configure a TreeViewDragDrop plugin for a TreePanel's View.
-	http://examples.ext.net/#/TreePanel/Basic/Reorder_Nodes/
-	http://docs.sencha.com/ext-js/4-1/#!/api/Ext.tree.plugin.TreeViewDragDrop
-
-82. The GridPanel's EnableHdMenu property has been removed.
-
-	Configure the MenuDisabled property of its columns.	
-
-83. AsyncTreeNode class has been removed. Use a Node class instead. 
-
-    If a Node is not a leaf and doesn't contain any children, it will initiate a load request on expand.
-
-84. TreeNode has been renamed to Node. Its cliet side ensureVisible method has been removed.
-    Use TreePanel View focusRow method.
-
-	Example
-
-	//New
-	TreePanel.getView().focusRow(node)
-
-85. ModelField Convert. Now the first argument is a record instance, not just an array.
-
-86. BottomTitle plugin has been removed. Use Panel HeaderPosition="Bottom".
-
-87. BoxComponentBase AutoWidth has been removed.
-
-88. PanelBase KeyMap has been removed. Though we are planning to implement it in one of next releases.
-
-89. Calendar: Event and EventCollection classes has been renamed to EventModel and EventModelCollection.
-
-90. ResourceManager Namespace is "App" by default. Any widget will share own client id in that namespace.
-
-	Example (client side)
-	
-	//Old
-	TextField1.setValue("Hello World!");
-
-	//New
-	App.TextField1.setValue("Hello World!");
-
-	or
-
-	//New
-	#{TextField1}.setValue("Hello World!");
-
-	You can set up an empty Namespace to get the same as it's in Ext.NET v1.
-
-	Example
-
-	<ext:ResourceManager runat="server" Namespace="" />
-
-91. There is no ViewState on page by default, i.e. ResourceManager DisableViewState="true" by default.
-
-	To get it back, set .DisableViewState="false" for ResourceManager.
-	
-92. ColumnLayout doesn't support FitHeight and Split options. 
-
-	Please use HBox layout if you need this functionality.
-
-93. The type of TextFieldBase Validator has been changed to JFunction (was string).
-
-	Example
-
-	//Old
-	<ext:TextField runat="server" Validator="myValidator">
-
-	//New
-	<ext:TextField runat="server">
-		<Validator Fn="myValidator" />
-	</ext:TextField>
-
-94. GridPanel Reload method doesn't reload its Store, don't use it.
-
-	Use Store Reload method.
-
-95. The TreePanel ContainerScroll property has been removed. 
+24. [EXTJS] The AbstractValidation class has been renamed to Validator. 
     
-	If you need its functionality you should set up the same property for DragZone.
-
-96. The TreePanel client side getNodeById has been removed. 
-
-    You should deal with TreeStore.
-
-	Example
-
-	//Old
-	tree.getNodeById("nodeId")
-
-	//New
-	tree.getStore().getNodeById("nodeId")
-
-97. The TreePanel server side methods - SetNodeText, SetNodeCls, SetNodeHref, SetNodeIcon, SetNodeIconCls, SetNodeId, SetNodeText, SetNodeTooltip - have been removed. 
-
-    Now you should get a node proxy calling the TreePanel GetNodeById method, then call a respective method of that node proxy.
-
-	Example
-
-	//Old
-	TreePanel1.SetNodeText("nodeId", "new text")
-
-	//New
-	TreePanel1.GetNodeById("nodeId").Set("text", "new text")
-
-98. The server Resizable class has been renamed to Resizer.
-
-	Its Draggable property has been removed. For dragging functionality use the common drag&drop components.
-
-99. The TreePanel server SelectNode method has been removed.
-
-	Use the Select method of its selection model.
-
-	Example
-
-	//Old
-	TreePanel1.SelectNode("nodeId");
-
-	//New
-	<ext:TreePanel runat="server">
-		<SelectionModel>
-			<ext:TreeSelectionModel runat="server" />
-		</SelectionModel>
-	</ext:TreePanel>
-
-	TreePanel1.GetSelectionModel().Select("nodeId");
-
-100. The Store server UpdateProxy property has been removed. The server HttpWriteProxy class has been removed.
-
-	Now you can configure AjaxProxy API setting Url for Sync (save) action.
-	http://examples.ext.net/#/GridPanel/Saving_Variations/WebService/
-
-	Or passing the action name as a parameter and analyze that parameter on server.
-	http://examples.ext.net/#/GridPanel/Saving_Variations/HttpHandler/
-
-101. The TreeNode server class has been renamed to the Node one. 
-	
-	Now it is consider just as a record and doesn't represent UI. Respectively, its UI events like Click, ContextMenu, DblClick, etc. have been removed.
-
-	Use the TreePanel ItemClick, ItemContextMenu, ItemDbl Click events.
-
-102. The EditableGrid plugin has been removed.
-
-     Use the ComponentColumn.
-	 http://examples.ext.net/#/GridPanel/ComponentColumn/Editor/
-
-103. The server Column Css property has been removed. 
-
-	Use the TdCls property.
-
-	Example
-
-	//Old
-	<ext:Column ... Css="color:red;" />
-
-	//New
-	<ext:Column ... TdCls="my-column" />
-
-	<style type="text/css">
-		.my-column {
-			color: red;
-		}
-	</style>
-
-104. The Store LoadException event has been removed.
-
-	Use the Exception ove.
-
-105. The server ComboBox properties to configure its dropdown list - ListAlign, ListClass, ListEmptyText, ListWidth, 
-	MinListWidth, ItemSelector, Shadow, Resizable, LoadingText, etc  - should be set up in the ComboBox ListConfig proeprty.
-
-	Example
-
-	//Old
-	<ext:ComboBox 
-		runat="server" 
-		ListClass="my-list" 
-		LoadingText="my loading text" 
-		ListWidth="200">
-
-	//New
-	<ext:ComboBox runat="server">
-		<ListConfig 
-			runat="server" 
-			Cls="my-list" 
-			LoadingText="my loading text"
-			Width="200" />
-	</ext:ComboBox>
-
-106. The server NumberField AllowNegative property has been removed. Now just set up MinValue to 0.
-
-	Example
-
-	//Old
-	<ext:NumberField runat="server" AllowNegative="false" />
-
-	//New
-	<ext:NumberField runat="server" MinValue="0" />
-
-107. Using the Toolbar Content now causes an "not supported" exception. It should not be used in Ext.NET v1 as well.
-
-108. The server Store Restful property has been removed. Use RestProxy.
-	http://examples.ext.net/#/GridPanel/Restful/Overview/
-
-109. The server DesktopWindow class and server DesktopModule WindowId property have been removed. 
-
-	Use the DesktopModule Window property and a common Window class instance.
-
-110. The server Column Editable property has been removed.
-
-	Return false from a  GridPanel or editing plugin BeforeEdit listener to prevent editing.
-
-111. The server Window InitCenter property has been removed as redundant. The Window is rendered in the center by default.
-
-112. The server GridPanel AutoExpandMin and AutoExpandMax properties have been removed.
-
-	Use the Column MaxWidth and MinWidth properties.
-
-113. The server GridPanel LoadMask property has been removed. 
-
-	Use the respective properties - LoadMask (true by default), LoadingText, etc. -  of GridView.
-
-114. The server ColumnModel class has been removed.
-
-	 Use the GridHeaderContainer class.
-
-	 Its Sortable property has the same meaning as the DefaultSortable one previously.
-
-115. The request utility functions like IsIE, IsGecko, IsChrome, IsWindows, etc. has been moved to RequestManager.
-
-	Example
-
-	//Old
-	if (X.IsIE)
-
-	//New
-	//If (RequestManager.IsIE)
-
-116. The server AjaxStoreResult class has been renamed to StoreResult.
-
-117. The TextField Change event is now fired when a user is typing, not just on blur.
-
-118. The GridPanel "Row..." events like RowClick, RowDblClick, RowContextMenu, etc. 
-	have been renamed to ItemClick, ItemDblCLick, ItemContextMenu, etc.
-
-119. The Server AjaxFormResult has been renamed to FormPanelResult.
-
-120. The server Store UseIdCOnfirmation property and the ConfirmationList property have been removed.
-
-	Generally, the Store saving mechanism has been refactored a lot. Please investigate the online examples in the Examples Explorer.
-
-	See also
-	http://forums.ext.net/showthread.php?18186
-
-121. The server EditorCollection Editor property has been removed.
-
-	Use its Primary property or access by [0] index.
-
-122. The Stateful property default value has beed changed to "false". Previously was true.
-
-	So, you need to set up it to true explicitly if you need the stateful functionality.
-
-123. The server Menu EnableScrolling property has been removed. Now you just need to set up Height. 
-	
-	If the combined menu items height exceeds the Menu height, the scrolling arrows will appear.
-
-124. The server Menu SubMenuAlign property has been removed.
-
-	Use its DefaultAlign property or the MenuItem MenuAlign property.
-
-125. The server GridView HeaderRows proeprty has been removed.
-
-	Use the Column HeaderItems property.
-	http://examples.ext.net/#/GridPanel/MultiHeader/Overview/
-
-126. The Checkbox's Change event has been removed. Use the Change one.
-
-127. A RowLayout has been removed. Use an AnchorLayout or a VBoxLayout instead.
-	 http://examples.ext.net/#/search/AnchorLayout
-	 http://examples.ext.net/#/search/VBoxLayout
-
-128. The ColumnBase's Fixed property has been removed. Use its Resizable property (defaults to true).
-
-129. The field's Valid and Invalid events have been removed. Use its ValidityChange event.
-
-130. Now the ColumnBase class is a base class for all GridPanel columns. Previosly it was the Column class.
-
-	 Example
-
-	 //Old
-	 Column c = new BooleanColumn();
-
-	 //New
-	 ColumnBase c = new BooleanColumn();
-
-131. The FormPanel's:
-		 - MonitorValid and MonitorPoll properties,
-		 - ClientValidation event, 
-		 - StartMonitoring and StopMonitoring methods 
-	 have been removed.
-
-	 Use, respectively, the following things:
-		 - PollForChanges and PollInterval properties,
-		 - ValidityChange event,
-		 - StartPolling and StopPolling methods.
-
-132. A field's ValidationEvent and ValidationDelay properties have been removed.
-
-	 Use the CheckChangeEvents and CheckChangeBuffer properties.
-
-133. The FilterCondition class has been refactored.
-
-		 - FilterType property has been renamed to Type,
-		 - Name property has been renamed to Field,
-		 - ValueList has been renamed to List,
-		 - ValueAs* (where * is a type) properties has been replaced with a single generic Value<type> property.
-
-134. The Panel's Failure event has been removed. Use the Loader's Exception event.
-
-135. The DropPoint enum's members have been renamed: Above => Before, Below => After.
-
-136. The GridView's HeaderGroupRows property has been removed.
-	 
-	 The HeaderGroupRow and HeaderGroupColumn classes have been removed.
-
-	 Now the Column class has the Columns collection property to organize grouping.
-	 http://examples.ext.net/#/GridPanel/Miscellaneous/ColumnHeaderGroup/
-
-137. The TreeGrid class has been removed. Now a common TreePanel suppors columns.
-     http://examples.ext.net/#/TreePanel/Advanced/TreeGrid/
-
-138. The Component's Ref property has been removed.
-
-	 Please use the AbstractContainer's down method.
-	 http://docs.sencha.com/ext-js/4-1/#!/api/Ext.container.AbstractContainer-method-down
-
-	 Example
-
-	 //New
-	 <ext:Panel ID="Panel1" runat="server">
-		 <TopBar>
-			 <ext:Toolbar runat="server">
-				 <Items>
-					 <ext:Button runat="server" ItemID="TestButton" Text="Test Button" />
-				 </Items>
-			 </ext:Toolbar>
-		 </TopBar>
-	 </ext:Panel>
-
-	 JavaScript code to access the Button can look:
-
-	 var btn = App.Panel1.down("#TestButton");
-
-139. The ComponentMenuItem class has been removed.
-	
-     Now any component can be added to directly to a Menu's Items collection.
-	 http://examples.ext.net/#/Toolbar/Menu/Controls_In_Menu/
-
-140. The TreeNode class has been removed. Please use the Node one.
-	
-	 There is no Disabled property any more and no a direct substituion.
-
-	 You can set up a custom attribute for a Node and configure a View's GetRowClass handler. Here is a related discussion on Sencha forum.
-	 http://www.sencha.com/forum/showthread.php?138173
-
-141. The TabPanel's EnableTabScroll property has been removed. There is no need in this property anymore.
-
-	 Now the scroll tools will appear and disappear automatically regardless any property. 
-
-142. The TreeLoader has been removed.
-
-	 See the TreePanel Loaders examples in the Examples Exmplorers.
-
-143. The FormPanelBase's FileUpload property has been removed. There is no need in this property anymore.
-
-	 Now a FormPanel checks itself it contains a FileUploadField or not. More details are here.
-	 http://docs.sencha.com/ext-js/4-1/#!/api/Ext.form.Basic-method-hasUpload
-
-144. The Store's RefreshAfterSaving property has been removed.
-
-	 A Store reload is not required anymore in most cases because in a response you have to return data (new ids, etc). Look at this example.
-	 http://examples.ext.net/#/GridPanel/Update/AutoSave/
-
-	 If you still need to reload a Store after a sync request then configure a success handler.
-	
-	 Example
-
-	 App.Store1.sync({
-		 success : function () {
-			 App.Store1.reload();
-		 }
-	 });
-
-145. Now CurrentCulture (instead of CurrentUICulture in Ext.NET v1) is used as a default value for the ResourceManager's Locale property.
-
-	 It can be set up, for example, by the following ways.
-
-	 Example 1
-
-	 <%@ Page Language="C#" Culture="de-DE" %>
-
-
-	 Example 2
-
-	 protected void Page_Load(object sender, EventArgs e)
-	 {
-		 System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("it-IT");
-	 }
-
+    Also:
+    EmailValidation      => EmailValidator
+    ExclusionValidation  => ExclusionValidator
+    FormatValidattion    => FormatValidator
+    InclusionValidation  => InclusionValidator
+    LengthValidation     => LengthValidator
+    PresenceValidation   => PresenceValidator
+    ValidationCollection => ValidatorCollection
+
+25. [EXTJS] The AbstractStore's Groupers has been renamed to Grouper 
+    and the DataSorterCollection type has been changed to DataSorter.
+
+    Here is an explanation from Ext JS team
+    http://docs.sencha.com/extjs/5.0/whats_new/5.0/extjs_upgrade_guide.html:
+
+    Support for multiple grouping levels was never realized in Ext JS 4 and 
+    groupers was really nothing more than extra sorters. This has been 
+    replaced by the “grouper” config and the getGroupString method that was 
+    previously configured on Store is now configured on the grouper. 
+    The internal structures are now much closer to being able to support
+    nested groupers and this config will most likely be restored when that 
+    functionality is available.
+
+26. [EXTJS] The StoreBase's GuaranteeRange() method has been removed as 
+    deprecated. Please use the GetRange() method with options or callback 
+    parameters.
+
+27. [EXTJS] The GridFilters feature has became a plugin. 
+    Please add it to <Plugins> instead of <Features>.
+
+    The GridFilters's Filters property has been removed. 
+    Now filters are configured for Columns. Please use a Column's Filter 
+    property. Also no need to set a DataIndex for a Filter. It comes 
+    automatically from a Column owning the Filter.
+
+    The internal structure of GridFilters has been changed a lot on the ExtJS
+    side. It led to removing of the GridFilter's GetSerialArgs, GetValue, 
+    SetValueFunc, ValidateRecord properties. There is no a direct substitution
+    for those properties. So, if you cannot get something working that has been
+    working with Ext.NET v2, please ask via the Ext.NET forums and we will try
+    to help.
+
+    The GridFilter's .MenuItems property has been removed. 
+    Please use the .MenuDefaults's Items of the GridFilter.
+
+    The ListFilter's .MenuConfig has been removed. 
+    Please use its .MenuDefaults property.
+
+    The NumericFilter has been renamed to NumberFilter. 
+    Also, FilterType's Numeric to Number.
+
+    The GridFilters plugin's FilterUpdate and the filters' 
+    (StringFilter, ListFilter, etc.) Update event have been removed.  
+    Please use the Store's FilterChange event.
+    
+    The filters' (StringFilter, ListFilter) Activate and Deactivate 
+    events don't fire. That is a bug/omission in ExtJS 5:
+    https://github.com/extnet/Ext.NET.Pro/issues/544    
+
+    The GridFilters' .UpdateBuffer property has been removed. 
+    Please configure it for a Column's Filter.
+
+    The GridFilter's Serialize event has been removed. 
+    Now serialization is done on the level of a Store's filters.
+    
+    The GridFilters' .AutoReload property has been removed. 
+    If needed you can prevent reloading by returning false 
+    from a Store's BeforeLoad listener.
+
+    The GridFilters' Local property has been removed. 
+    Please use a Store's RemoteFilter property: 
+    http://docs.sencha.com/extjs/5.0/apidocs/#!/api/Ext.data.AbstractStore-cfg-remoteFilter
+
+    The GridFilters' ParamPrefix property has been removed. 
+    Please use a proxy's (e.g. AjaxProxy) FilterParam:
+    http://docs.sencha.com/extjs/5.0/apidocs/#!/api/Ext.data.proxy.Server-cfg-filterParam
+
+    The FilterConditions class: 
+    
+        - StringFilter's Comparison has been changed from Comparison.Eq 
+          to Comparison.Like;
+        
+        - ListFilter's Comparison has been changed from Comparison.Eq 
+          to Comparison.In.
+
+28. [EXTJS] The ButtonBase's .MenuArrow property has been renamed to 
+    .ArrowVisible.
+
+29. [EXTNET] The HyperLink class has been renamed to Hyperlink 
+    (notice lowercase "l").
+    
+    The LinkButton class has been renamed to HyperlinkButton 
+    (notice lowercase "l").
+
+30. [EXTNET] There is no "parentAutoLoadControl" global variable anymore. 
+    If you need it back, please use the Loader's .ParentRef property.
+
+    <Loader Mode="Frame" Url="Child.aspx" ParentRef="parentAutoLoadControl" />
+
+    The .ParentRef property is only applicable with Mode="Frame". 
+    If ParentRef is a non-empty string and if the iframe doesn't restrict 
+    access, then Ext.NET tries to save a reference to the parent Ext.NET 
+    control that loads the iframe as a global variable. For example, setting
+    ParentRef="parentExtNetControl" means that inside the iframe page 
+    you should be able to access the Ext.NET parent control  by 
+    "window.parentExtNetControl" reference. Again only if the iframe doesn't 
+    restrict access. If you set ParentRef, you should ensure that the same 
+    global variable name is not used inside the iframe. It will be overridden 
+    and it is under the developer's responsibility who uses 
+    the ParentRef property.
+
+31. [EXTNET] Support for ASP.NET MVC 3 has been removed.
+
+32. [EXTJS] ExtJS 5 introduced a new, high performance, touch-optimized 
+    charts package. This brings lots of new capabilities, as well as great 
+    performance on tablet devices. The legacy ExtJS 4 charts has been removed 
+    in Ext.NET v3.  For details on upgrading to the new Charts, 
+    see the Charts Guide.
+    http://docs-origin.sencha.com/extjs/5.0/whats_new/5.0/charts_upgrade_guide.html
+
+    While the new charting package has many similarities with the legacy 
+    charts, users should expect to find API differences.
+
+    Also we recommend to review the Ext.NET Charts examples:
+    http://examples.ext.net/
+
+    As well, some Charts functionality is missing from ExtJS 5 when compared 
+    to ExtJS 4. More information is available within the following Issue:
+    https://github.com/extnet/Ext.NET.Pro/issues/583
+
+33. [EXTJS] The Draw package has been heavily reworked in ExtJS 5, 
+    which has led to breaking changes. 
+    
+    For example, the DrawComponent has been renamed to DrawContainer. 
+    The DrawText class has been removed. A possilbe alternative could be 
+    using a DrawContainer with a TextSprite inside.
+
+    Unfortunately, we don't have a thorough guide demonstrating how to upgrade
+    to the new Draw API. We suggest to review the ExtJS Draw guide and review 
+    the Ext.NET Draw samples in the Examples Explorer.
+    http://docs-origin.sencha.com/extjs/5.0/core_concepts/drawing.html
+    http://examples3.ext.net
+
+    As well, some Draw functionality is missing from ExtJS 5 when compared 
+    to ExtJS 4. More information is available within the following Issue:
+    https://github.com/extnet/Ext.NET.Pro/issues/583
+
+34. [EXTNET] The ResourceManager's SeparateUIStyles setting has been removed. 
+    If you previously used SeparateUIStyles="false", it is now the behavior 
+    by default, i.e. all the UI styles are loaded at once if any UI is used.
+    We don't consider SeparateUIStyles="true" (default in Ext.NET v2) 
+    is required anymore. If you disagree, please feel free to initiate 
+    a discussion on the forums.
+
+35. [EXTJS] Now a TreeStore's .getById() call returns null if pass a root's id 
+    and RootVisible is false. It is better to use .getNodeById() to retrieve 
+    nodes.
+
+36. [EXTJS] The ModelField's UseNull property has been renamed to AllowNull.
+
+37. [EXTJS] THe GroupTabPanel doesn't work currently. It should be fixed in
+    one of the next releases.

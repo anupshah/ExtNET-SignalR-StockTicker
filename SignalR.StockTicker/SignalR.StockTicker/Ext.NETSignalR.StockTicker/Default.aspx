@@ -10,7 +10,7 @@
 		<ext:ResourcePlaceHolder runat="server" />
 
 	    <script src="../bundles/jquery"></script>
-		<script src="../Scripts/jquery.signalR-1.0.1.js"></script>
+		<script src="../Scripts/jquery.signalR-2.2.0.min.js"></script>
 		<script src="../signalr/hubs"></script>
 		<script src="SignalR.StockTicker.js"></script>
 	</head>
