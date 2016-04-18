@@ -17,7 +17,7 @@
 	<body>
 		<ext:ResourceManager ID="ResourceManager1" runat="server" />
 		
-		<ext:Window runat="server" Layout="Fit" Icon="Table" Title="SignalR Stock Ticker with Ext.NET" Closable="false" Width="550" Height="300" Border="false">
+		<ext:Window runat="server" Layout="Fit" IconCls="fa fa-list-alt" Title="SignalR Stock Ticker with Ext.NET" Closable="false" Width="685" Height="300" Border="false">
 			<Items>
 				<ext:SignalRGridPanel ID="GridPanel1" runat="server" />
 			</Items>

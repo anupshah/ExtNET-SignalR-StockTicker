@@ -20,10 +20,10 @@
     <link type="text/css" rel="stylesheet" href="http://speed.ext.net/www/intro/css/main.css" />
 </head>
 <body>
-    <ext:ResourceManager runat="server" Theme="Crisp" />
+    <ext:ResourceManager runat="server" Theme="Triton" />
 
     <header>
-        <a href="http://ext.net/"><img src="http://speed.ext.net/identity/extnet-logo-white-large.png" class="logo"/></a>
+        <a href="http://ext.net/"><img src="http://speed.ext.net/identity/extnet-logo-large.png" class="logo"/></a>
     </header>
 
     <div class="wrapper">
