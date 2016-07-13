@@ -5,15 +5,9 @@ namespace Microsoft.AspNet.SignalR.StockTicker.Ext.NETSignalR.StockTicker
 {
 	public class SignalRGridPanel : GridPanel
 	{
-		public override string XType
-		{
-			get { return "signalrgridpanel"; }
-		}
+		public override string XType => "signalrgridpanel";
 
-		public override string InstanceOf
-		{
-			get { return "ExtNetSignalRDemo.SignalRGridPanel"; }
-		}
+		public override string InstanceOf => "ExtNetSignalRDemo.SignalRGridPanel";
 
 		protected override void OnInit(EventArgs e)
 		{
